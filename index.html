@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARRY'S ROOM® | Official Atelier</title>
+    <style>
+        /* LUXURY INDUSTRIAL RESETS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ANNOUNCEMENT BAR */
+        .announcement-bar {
+            background-color: #111111;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-family: monospace;
+            letter-spacing: 0.15em;
+            border-bottom: 1px solid #222222;
+        }
+
+        /* HERO HEADER BLOCK */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            /* Hintergrundbild-Fallback, falls du später ein eigenes hochlädst */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .brand-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            padding-left: 0.35em; /* Zentrierungsausgleich für Letter-Spacing */
+            color: #ffffff;
+            white-space: nowrap; /* Verhindert hässliche Umbrüche auf Handys */
+        }
+
+        @media (max-width: 480px) {
+            .brand-title {
+                font-size: 22px; /* Schrumpft perfekt auf kleinen Displays */
+                letter-spacing: 0.25em;
+            }
+        }
+
+        .hero-sub {
+            font-size: 12px;
+            font-family: monospace;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+        }
+
+        /* MANIFESTO / PHILOSOPHY */
+        .manifesto-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom: 1px solid #111111;
+        }
+
+        .manifesto-title {
+            font-size: 14px;
+            font-family: monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #888888;
+            margin-bottom: 20px;
+        }
+
+        .manifesto-text {
+            font-size: 20px;
+            line-height: 1.6;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        /* PRE-LAUNCH FORM */
+        .cta-box {
+            background-color: #0a0a0a;
+            border: 1px solid #1c1c1c;
+            padding: 40px 25px;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 0px; /* Keine runden Ecken für den Industrial Look */
+            margin-top: 20px;
+        }
+
+        .cta-box h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .cta-box p {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 15px;
+            background: #111111;
+            border: 1px solid #222222;
+            color: #ffffff;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .email-input:focus {
+            border-color: #ffffff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* FOOTER TECH DATA */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 10px;
+            color: #444444;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announcement-bar">
+        DROP 01 LAUNCHING SOON — JOIN THE ROOM FOR 15% OFF
+    </div>
+
+    <!-- MAIN HERO DISPLAY -->
+    <section class="hero-section">
+        
+        <!-- FORCE SINGLE LINE TITLE -->
+        <h1 class="brand-title">HARRY’S ROOM®</h1>
+        <p class="hero-sub">DESIGN ATELIER / GERMANY</p>
+
+        <!-- PRIVACY ACCESS LAUNCH BOX -->
+        <div class="cta-box">
+            <h3>Zugang anfordern</h3>
+            <p>Trage deine E-Mail ein, um den exklusiven Einlasscode 1 Stunde vor dem offiziellen Public Drop zu erhalten. Streng limitiert.</p>
+            
+            <form action="#" onsubmit="alert('Erfolgreich registriert.'); return false;">
+                <input type="email" class="email-input" placeholder="DEINE E-MAIL ADRESSE" required>
+                <button type="submit" class="submit-btn">ENTER THE ROOM</button>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- MANIFESTO SECTION -->
+    <div class="manifesto-container">
+        <p class="manifesto-title">[ PHILOSOPHIE ]</p>
+        <p class="manifesto-text">„Basic outfits don't exist. Only unfinished ones.“</p>
+    </div>
+
+    <!-- TECHNICAL FOOTER -->
+    <footer>
+        HARRY'S ROOM © 2026 / ALL RIGHTS RESERVED / SPECS: 316L STEEL & UV400 OPTICS
+    </footer>
+
+</body>
+</html>
