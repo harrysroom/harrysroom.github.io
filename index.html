@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry's Room - Trading Cards</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-light: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-light);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(15,23,42,0.8), rgba(15,23,42,0.9)), url('https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: var(--text-muted);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background-color: #0f172a;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #34d399;
+            margin-bottom: 1rem;
+        }
+
+        /* Admin Dashboard Section */
+        .admin-section {
+            background: var(--card-bg);
+            border: 1px solid #334155;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            margin-top: 4rem;
+        }
+
+        .admin-login, .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active, .admin-login.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: white;
+            border-radius: 6px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        footer {
+            background: #090d16;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid #334155;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">HARRY'S ROOM</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#cards">Collection</a></li>
+                    <li><a href="#" onclick="toggleAdminLogin()">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Rare Trading Cards & Collectibles</h1>
+        <p>Entdecke exklusive Pokémon-Karten, seltene Sammlerstücke und Highlights für dein Display.</p>
+        <a href="#cards" class="btn">Collection ansehen</a>
+    </section>
+
+    <!-- Main Content / Cards Grid -->
+    <div class="container" id="cards">
+        <h2 class="section-title">Trending Cards</h2>
+        <div id="productGrid" class="products-grid">
+            <!-- Wird via JavaScript befüllt -->
+        </div>
+
+        <!-- Admin Bereich -->
+        <div class="admin-section">
+            <!-- Login -->
+            <div id="adminLoginBox" class="admin-login active">
+                <h3 style="margin-bottom: 1rem; color: var(--text-light);">Admin Dashboard Login</h3>
+                <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">Passwort: <code>3636</code></p>
+                <div class="form-group">
+                    <input type="password" id="adminPasswordInput" placeholder="Passwort eingeben...">
+                </div>
+                <button class="btn" onclick="checkAdminLogin()">Einloggen</button>
+            </div>
+
+            <!-- Dashboard -->
+            <div id="adminDashboard" class="admin-panel">
+                <h3 style="margin-bottom: 1rem; color: var(--text-light);">Karten verwalten</h3>
+                <div class="form-group">
+                    <label>Kartenname</label>
+                    <input type="text" id="newTitle" placeholder="z.B. Charizard VMAX">
+                </div>
+                <div class="form-group">
+                    <label>Preis (€)</label>
+                    <input type="text" id="newPrice" placeholder="z.B. 149,99 €">
+                </div>
+                <div class="form-group">
+                    <label>Bild-URL</label>
+                    <input type="text" id="newImage" placeholder="https://...">
+                </div>
+                <button class="btn" onclick="addProduct()">Karte hinzufügen</button>
+                <button class="btn" style="background: #ef4444; margin-left: 10px;" onclick="logoutAdmin()">Abmelden</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 HARRY'S ROOM. Alle Rechte vorbehalten.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#">Impressum</a> | <a href="#">Datenschutz</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let products = [
+            { title: "Charizard Base Set (Holo)", price: "249,99 €", image: "https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?auto=format&fit=crop&w=600&q=80" },
+            { title: "Pikachu Illustrator Promo", price: "899,00 €", image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=600&q=80" },
+            { title: "Mewtwo EX Full Art", price: "75,00 €", image: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            products.forEach((p, index) => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <img src="${p.image}" alt="${p.title}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?auto=format&fit=crop&w=600&q=80'">
+                        <div class="product-info">
+                            <h3 class="product-title">${p.title}</h3>
+                            <div class="product-price">${p.price}</div>
+                            ${document.getElementById('adminDashboard').classList.contains('active') ? `<button class="btn" style="background:#ef4444; padding: 0.4rem 0.8rem; font-size:0.8rem;" onclick="deleteProduct(${index})">Löschen</button>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function toggleAdminLogin() {
+            document.getElementById('adminLoginBox').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function checkAdminLogin() {
+            const pass = document.getElementById('adminPasswordInput').value;
+            if (pass === "3636") {
+                document.getElementById('adminLoginBox').classList.remove('active');
+                document.getElementById('adminDashboard').classList.add('active');
+                renderProducts();
+                alert("Erfolgreich als Admin eingeloggt!");
+            } else {
+                alert("Falsches Passwort!");
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('adminLoginBox').classList.add('active');
+            document.getElementById('adminPasswordInput').value = '';
+            renderProducts();
+        }
+
+        function addProduct() {
+            const title = document.getElementById('newTitle').value;
+            const price = document.getElementById('newPrice').value;
+            const image = document.getElementById('newImage').value;
+
+            if (!title || !price) {
+                alert("Bitte Titel und Preis eingeben.");
+                return;
+            }
+
+            products.push({
+                title: title,
+                price: price.includes('€') ? price : price + ' €',
+                image: image || 'https://images.unsplash.com/photo-1613771404784-3a5686aa2be3?auto=format&fit=crop&w=600&q=80'
+            });
+
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newPrice').value = '';
+            document.getElementById('newImage').value = '';
+            
+            renderProducts();
+            alert("Karte hinzugefügt!");
+        }
+
+        function deleteProduct(index) {
+            products.splice(index, 1);
+            renderProducts();
+        }
+
+        window.onload = function() {
+            renderProducts();
+        };
+    </script>
+</body>
+</html>
